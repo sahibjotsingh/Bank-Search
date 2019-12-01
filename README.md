@@ -8,7 +8,7 @@ Clone this repo
   `git clone https://github.com/sahibjotsingh/Google-Keep-Angular.git`
 
 and run command
-  `npm install` in the peoject directory  
+  `npm install` in the project directory  
 
 ## Development server
 
