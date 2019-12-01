@@ -1,0 +1,93 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="centered-content">
+    <div class="top-bar">
+        <div class="search-bar">
+            <input [(ngModel)]="query" class="input has-background-white" type="text" placeholder="Search"
+                (ngModelChange)="filterBySearchQuery()">
+        </div>
+        <div class="city-dropdown">
+            <div class="control">
+                <div class="select">
+                    <select [(ngModel)]="selectedCity" (change)="filterByCity()">
+                        <option *ngFor="let city of cities" [ngValue]="city">{{city}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="pagesize-dropdown">
+            <div class="control">
+                <div class="select">
+                    <select [(ngModel)]="selectedPageSize" (change)="changePageSize()">
+                        <option *ngFor="let pageSize of pageSizes" [ngValue]="pageSize">{{pageSize}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!--<a class="button" [style.background-color]="blue" (click)="filterByFavourite()">View favourites</a>-->
+    </div>
+
+    <div class="results">
+        <div class="text-center">
+            <table class="table is-striped is-hoverable is-narrow is-fullwidth">
+                <thead>
+                    <tr>
+                        <th class="has-text-centered"><abbr title="IFSC">IFSC</abbr></th>
+                        <th class="has-text-centered"><abbr title="Bank">Bank</abbr></th>
+                        <th class="has-text-centered"><abbr title="Address">Address</abbr></th>
+                        <th class="has-text-centered"><abbr title="Favourite">Favourite</abbr></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of pagedItems">
+                        <td class="has-text-centered">
+                            {{ item.ifsc }}
+                        </td>
+                        <td class="has-text-centered">
+                            {{ item.bank_name }}
+                        </td>
+                        <td class="has-text-centered">
+                            {{ item.address }}
+                        </td>
+                        <td class="has-text-centered">
+                            <label class="checkbox">
+                                <input type="checkbox" [checked]="item.favourite" [(ngModel)]="item.favourite" (change)="changed()">
+                            </label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination-controls">
+            <!-- Pagination -->
+            <nav class="pagination is-right" role="navigation" aria-label="pagination">
+
+                <!-- Logic for First, Previous, Next, and Last Links -->
+                <a class="pagination-previous" (click)="setPage(1)" [class.disabled]="pager.currentPage === 1">
+                    First
+                </a>
+                <a class="pagination-previous" (click)="setPage(pager.currentPage - 1)"
+                    [class.disabled]="pager.currentPage === 1">
+                    Previous
+                </a>
+                <a class="pagination-next" (click)="setPage(pager.currentPage + 1)"
+                    [class.disabled]="pager.currentPage === pager.totalPages">
+                    Next
+                </a>
+                <a class="pagination-next" (click)="setPage(pager.totalPages)"
+                    [class.disabled]="pager.currentPage === pager.totalPages">
+                    Last
+                </a>
+
+                <!-- List of pages -->
+                <ul *ngIf="pager.pages && pager.pages.length" class="pagination-list">
+                    <li *ngFor="let page of pager.pages">
+                        <a class="pagination-link" [class.is-current]="pager.currentPage === page"
+                            aria-label="Goto page 1" (click)="setPage(page)">{{ page }}</a>
+                    </li>
+                </ul>
+
+            </nav>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+@import '../../../main-styles.css';
+
+.centered-content {
+    display: flex;
+    overflow-x: auto;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-width: 515px;
+    background-color: #E1F2E8;
+    flex-direction: column;
+}
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    width: 95%;
+    height: 10%;
+    margin: 1.5%;
+}
+
+.search-bar {
+    flex-grow: 1;
+    margin-right: 3%;
+}
+
+.city-dropdown {
+    margin-right: 3%;
+}
+
+.pagesize-dropdown {
+    margin-right: 3%;
+}
+
+.results {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 95%;
+    margin-bottom: 2%;
+}
+
+.text-center {
+    overflow-x: auto;
+    overflow-y: auto;
+    width: 100%;
+    flex-grow: 1;
+}
+
+table th {
+    background-color: white;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
