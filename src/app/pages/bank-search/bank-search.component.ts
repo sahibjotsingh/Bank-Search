@@ -19,6 +19,7 @@ export class BankSearchComponent implements OnInit {
   pageSizes: number[] = [10, 20, 30, 40];
   selectedCity: string = this.cities[0];
   selectedPageSize: number = this.pageSizes[0];
+  color: string = "#ffffff";
 
   private allItems: BankDetail[];
   private filteredItems: BankDetail[];
@@ -53,19 +54,38 @@ export class BankSearchComponent implements OnInit {
       this.filteredItems = [];
     }
     else if (!this.query) {
-      this.filteredItems = this.allItems;
-      this.setPage(1);
+      if (this.color == '#F58A82') {
+        this.filteredItems = this.allItems.filter(it => it.favourite == true);
+        this.setPage(1);
+      }
+      else {
+        this.filteredItems = this.allItems;
+        this.setPage(1);
+      }
     }
     else {
-      const queryLower = this.query.toLowerCase();
-      this.filteredItems = this.allItems.filter(it => it.ifsc.toLowerCase().includes(queryLower) || it.bank_name.toLowerCase().includes(queryLower) || it.address.toLowerCase().includes(queryLower));
-      this.setPage(1);
+      if (this.color == '#F58A82') {
+        const queryLower = this.query.toLowerCase();
+        this.filteredItems = this.allItems.filter(it => (it.ifsc.toLowerCase().includes(queryLower) || it.bank_name.toLowerCase().includes(queryLower) || it.address.toLowerCase().includes(queryLower)) && it.favourite == true);
+        this.setPage(1);
+      }
+      else {
+        const queryLower = this.query.toLowerCase();
+        this.filteredItems = this.allItems.filter(it => it.ifsc.toLowerCase().includes(queryLower) || it.bank_name.toLowerCase().includes(queryLower) || it.address.toLowerCase().includes(queryLower));
+        this.setPage(1);
+      }
     }
   }
 
   filterByFavourite() {
-      this.filteredItems = this.filteredItems.filter(it => it.favourite == true);
-      this.setPage(1);
+    if (this.color == '#ffffff') {
+      this.color = '#F58A82';
+    }
+    else {
+      this.color = '#ffffff';
+    }
+
+    this.filterBySearchQuery();
   }
 
   changePageSize() {
