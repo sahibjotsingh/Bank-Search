@@ -1,14 +1,12 @@
 # Bank Search Application
 
 A SPA to list and search through banks in a particular city.
+  
+## Getting started
 
-## Setup
+Make sure you have the [Angular CLI](https://github.com/angular/angular-cli#installation) installed globally. Then run `npm install` to resolve all dependencies (might take a minute).
 
-Clone this repo 
-  `git clone https://github.com/sahibjotsingh/Google-Keep-Angular.git`
-
-and run command
-  `npm install` in the project directory  
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Development server
 
